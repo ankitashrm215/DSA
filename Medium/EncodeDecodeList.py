@@ -1,5 +1,10 @@
 #function to encode list into string
 def encode(strs: list[str]) -> str:
+    '''
+    Encode function encodes a list of string into a string
+    Time complexity: O(n) where n is total length of all strings in list
+    Space complexity: O(n) where n is total length of all strings in list
+    '''
     encodedString = ""
 
     #for each item in list, add length of item with # at starting
@@ -9,6 +14,11 @@ def encode(strs: list[str]) -> str:
 
 #function to decode string into list
 def decode(encodedString: str) -> list:
+    '''
+    Decode function decodes a string into a list
+    Time complexity: O(n) where n is length of input string
+    Space complexity: O(n) where n is length of input string
+    '''
     decodedList = []
     l = len(encodedString)
     i = 0
