@@ -43,3 +43,38 @@ def topKFrequent(nums, k):
     return res
 
 print(topKFrequent([1,2,2,3,3,3], 2))
+
+def topKFrequentOptimised(nums, k):
+
+    ''' This is an optimised approach that uses bucket sort
+    Time complexity: O(n) where n is the length of nums
+    Space complexity: O(n)
+    '''
+    tempDict = {}
+
+    #create dictionary with item as key and frequency as value
+    for num in nums:
+        if num in tempDict:
+            tempDict[num] = tempDict[num] + 1
+        else:
+            tempDict[num] = 1
+        
+    arr = []
+    for _ in range(0,len(nums)):
+        arr.append([])
+
+    #add item to array at frequency index
+    for key,val in tempDict.items():
+        arr[val-1].append(key)
+        
+    res = []
+
+    #fetch top k lemenets from right of array
+    for i in range(len(arr)-1, -1, -1):
+        for item in arr[i]:
+            res.append(item)
+            if(len(res) == k):
+                return res
+    return res
+
+print(topKFrequentOptimised([1,2,2,3,3,3], 2))
