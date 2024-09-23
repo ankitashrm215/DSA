@@ -15,7 +15,7 @@ Explanation: The longest consecutive sequence is [2, 3, 4, 5].
 
 def longestConsecutiveSequence(nums):
 
-        ''' This is the brute force qpproach that uses sorting
+        ''' This is the brute force approach that uses sorting
             Time complexity: O(nlogn) where n is the length of nums
             Space complexity: O(n) + O(n) for sorting list and tempList
         '''
@@ -42,3 +42,26 @@ def longestConsecutiveSequence(nums):
                 res = 1
         tempList.sort(reverse=True)
         return tempList[0] if len(tempList) > 0 else 0
+
+def longestConsecutiveOptimized(nums):
+
+        ''' This is otimized approach that uses set. Set uses hash set hence finding an item is set is O(1)
+            Time complexity: O(n) where n is the length of nums
+            Space complexity: O(1) for longest
+        '''
+        l = len(nums)
+        numsSet = set(nums)
+        if l == 1:
+            return 1
+        
+        longest = 0
+        for n in nums:
+            if (n-1) not in numsSet: #check start of sequence
+                l = 0
+                while (n + l) in numsSet:
+                    l = l + 1
+                longest = max(l, longest)
+        return longest
+
+print(longestConsecutiveSequence([2,20,4,10,3,4,5]))
+print(longestConsecutiveOptimized([2,20,4,10,3,4,5]))
