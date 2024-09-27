@@ -35,4 +35,32 @@ def sortColors(nums):
     nums[:] = res
     return nums
 
+
+def sortColorsOptimized(nums):
+    
+    '''
+    Implements quick sort partition
+    Time complexity: O(n) where n is the length of nums
+    Sppace complexity: O(1) for in-place sorting
+    '''
+    def swap(i, j):
+        tmp = nums[i]
+        nums[i] = nums[j]
+        nums[j] = tmp
+    i = 0
+    l = 0
+    length = len(nums)
+    r = length - 1
+    while i <= r:
+        if nums[i] == 0:
+            swap(i, l)
+            l = l + 1
+        elif nums[i] == 2:
+            swap(i, r)
+            r = r - 1
+            i = i - 1
+        i = i + 1
+    return nums
+
 print(sortColors([2,0,1]))
+print(sortColorsOptimized([2,0,2,1,1,0]))
